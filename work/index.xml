@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on Imogen Chen | Design &amp; Research </title>
+    <link>https://imogenchen.github.io/work/</link>
+    <description>Recent content in blog on Imogen Chen | Design &amp; Research </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Oct 2019 13:49:23 +0600</lastBuildDate><atom:link href="https://imogenchen.github.io/work/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Revitalise Guting Sheltered Workshop</title>
+      <link>https://imogenchen.github.io/work/revitalise_guting_sheltered_workshop/</link>
+      <pubDate>Sat, 10 Apr 2021 13:07:47 +0800</pubDate>
+      
+      <guid>https://imogenchen.github.io/work/revitalise_guting_sheltered_workshop/</guid>
+      <description>Role in Team: User Research, Design Strategy, User Experience Design, Project Management</description>
+    </item>
+    
+    <item>
+      <title> Covid-19 Data Visualisation in Python</title>
+      <link>https://imogenchen.github.io/work/covid-19/</link>
+      <pubDate>Fri, 29 May 2020 10:07:47 +0600</pubDate>
+      
+      <guid>https://imogenchen.github.io/work/covid-19/</guid>
+      <description>Introduction This project presented a fundamental practice of data analysis in python, turning Covid-19 data of April 2020 into statistical visualisation.</description>
+    </item>
+    
+    <item>
+      <title>Contextmapping for Young Money</title>
+      <link>https://imogenchen.github.io/work/contextampping_for_youngster/</link>
+      <pubDate>Sat, 01 Feb 2014 10:07:47 +0600</pubDate>
+      
+      <guid>https://imogenchen.github.io/work/contextampping_for_youngster/</guid>
+      <description>Introduction Discovering information from end-users is important for leading new product and service.</description>
+    </item>
+    
+    <item>
+      <title>Reinvent the Toilet in India</title>
+      <link>https://imogenchen.github.io/work/reinvent_the_toilet_in_india/</link>
+      <pubDate>Mon, 29 Jul 2013 10:07:47 +0600</pubDate>
+      
+      <guid>https://imogenchen.github.io/work/reinvent_the_toilet_in_india/</guid>
+      <description>Role in Team: Field Study, User Research, Design Strategy &amp;amp; Business Model Canvas</description>
+    </item>
+    
+  </channel>
+</rss>

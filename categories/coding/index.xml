@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coding on Imogen Chen | Design &amp; Research </title>
+    <link>https://imogenchen.github.io/categories/coding/</link>
+    <description>Recent content in Coding on Imogen Chen | Design &amp; Research </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 29 May 2020 10:07:47 +0600</lastBuildDate><atom:link href="https://imogenchen.github.io/categories/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title> Covid-19 Data Visualisation in Python</title>
+      <link>https://imogenchen.github.io/work/covid-19/</link>
+      <pubDate>Fri, 29 May 2020 10:07:47 +0600</pubDate>
+      
+      <guid>https://imogenchen.github.io/work/covid-19/</guid>
+      <description>Introduction This project presented a fundamental practice of data analysis in python, turning Covid-19 data of April 2020 into statistical visualisation.</description>
+    </item>
+    
+  </channel>
+</rss>
