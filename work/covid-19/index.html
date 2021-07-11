@@ -64,6 +64,14 @@
         <div class="desktop-view">
           <ul class="navbar-nav mr-auto">
             
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/imogenchen"><i class="ti-github"></i></a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="ti-linkedin"></i></a>
+            </li>
+            
           </ul>
         </div>
 
@@ -81,12 +89,6 @@
           
           <li class="nav-item">
             <a class="nav-link" href="https://imogenchen.github.io/work">Work</a>
-          </li>
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://imogenchen.github.io/contact">Contact</a>
           </li>
           
           
@@ -122,19 +124,17 @@
         
         <div class="content mb-5">
           <h4 id="introduction">Introduction</h4>
-<p>This project presented a fundamental practice of data analysis in python, turning <strong>Covid-19 data of April 2020 into statistical visualisation.</strong> The Covid-19 analysis was divided into two parts:</p>
+<p>The pandemic has impacted the global economy and people&rsquo;s livelihoods. How is coronavirus affecting the nations and people? What countries are worst-affected by Covid-19? This project presented data analysis in python, turning Covid-19 into a data visualisation.</p>
+<p>Starting at the end of 2019, some websites such as <a href="https://coronavirus.jhu.edu/map.html">John Hopkins University</a>, began collecting data from all around the world. To make this project simple to tackle, I decided to work with the <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest">Coronavirus Covid19 API</a> published by postman.com, which consists of the summary of cumulative confirmed cases in each country updates daily.</p>
+<p>This project uses python libraries such as Json, Pandas and Matplotlib to clean, analyse and visualise dataset. In the end of project, two data visualisation will be presented:</p>
 <ul>
-<li><em>Case 1 - Top 10 countries with most confirmed cases</em></li>
+<li><em>Case 1: Top 10 countries with most confirmed cases.</em></li>
+<li><em>Case 2: Mapping the death rate of the worst-affected country.</em> <!-- raw HTML omitted --></li>
 </ul>
-<p>Acquire global confirmed/death cases from <a href="https://api.covid19api.com/summary">Coronavirus Covid19 API</a> and rank the top 10 counties from 192 countries. Also, calculate the death rate of these 10 nations for extra information.</p>
-<ul>
-<li><em>Case 2: Mapping for US cases and deaths</em></li>
-</ul>
-<p>Analyse United States’s confirmed number, death rate and recovered rate from past three months and plot a trend line for observation.</p>
 <h4 id="case-1-top-10-countries-with-most-confirmed-cases">Case 1: Top 10 countries with most confirmed cases</h4>
-<p><strong>1. Data Loading</strong></p>
-<p>Firstly, access the Covid-19 json file downloaded from the website. The json file has five keys: &lsquo;ID&rsquo;, &lsquo;Message&rsquo;, &lsquo;Global&rsquo;, &lsquo;Countries&rsquo; and &lsquo;Date&rsquo;. The &lsquo;Countries&rsquo; key is only part needed.
-(Note: install <a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en">JSONView</a> chrome extension to get easy-to-read json tree with Chrome browser)</p>
+<p><strong>1. Importing Data</strong></p>
+<p>Firstly, accessing the Covid-19 JSON format downloaded by date of April 2020 from <a href="https://api.covid19api.com/summary">Coronavirus APIs</a>. A quick investigation reveals that the JSON file is structured within &lsquo;ID&rsquo;, &lsquo;Message&rsquo;, &lsquo;Global&rsquo;, &lsquo;Countries&rsquo; and &lsquo;Date&rsquo; objects. &lsquo;Countries&rsquo; which consists of total confirmed cases is what we need, so we filtered out the specific attributes and values.</p>
+<p>(Note: install <a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en">JSONView</a> chrome extension to get easy-to-read json tree with chrome browser)</p>
 <pre><code>import json
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -143,13 +143,14 @@ with open('covid19_summary_200423.json', 'r') as read_file:
     data = json.load(read_file)  
 
 country_data = data['Countries']
-</code></pre><p><img src="/images/covid19_1a.jpeg" alt=""></p>
-<p><strong>2. Data Cleaning</strong></p>
-<p>Convert <strong>dictionary</strong> to a <strong>dataframe</strong>, then use <code>loc</code> function to slice data from 12 columns into 3 columns: &lsquo;Country&rsquo;, &lsquo;TotalConfirmed&rsquo; and &lsquo;Total Deaths&rsquo;. The following table displayed 192 countries with confirmed/death numbers in alphabetical order.</p>
+</code></pre><p><img src="/images/covid19_1.jpeg" alt=""></p>
+<p><strong>2. Cleaning Data</strong></p>
+<p><code>pandas.DataFrame</code> converts the number of rows and columns to <strong>DataFrame</strong>. Using <code>loc</code> to select data columns by labels: &lsquo;Country&rsquo;, &lsquo;TotalConfirmed&rsquo; and &lsquo;Total Deaths&rsquo;. The following table displays 192 countries with confirmed/death numbers in alphabetical order; therefore, our next step is to reorder the list by the numbers of confirmed cases.</p>
 <pre><code>df = pd.DataFrame(country_data)
 df = df.loc[:, ['Country', 'TotalConfirmed', 'TotalDeaths']]
 </code></pre><p><img src="/images/covid19_2.jpeg" alt=""></p>
-<p>Moreover, rank the confirmed case from most to least numbers by DataFrame&rsquo;s <code>sort_values</code> functions and fetching the first 10 results from the list. The <code>eval</code> method is used to calculate the death rate.</p>
+<p>We use <code>sort_values</code> fo sort dataframe by a specific column&rsquo;s value, ranking the confirmed case from most to least numbers. The pandas <code>loc</code> method allow us to take only index labels and returns the first 10 highly affected nations.</p>
+<p>For additional information, we also apply <code>eval</code> method to calculate the death rate.</p>
 <pre><code>df = df.sort_values(by='TotalConfirmed', ascending = False)
 df.index = range(len(df))
 df = df.loc[0:9]
@@ -159,8 +160,8 @@ date = data['Date']
 print(df)
 print(date)
 </code></pre><p><img src="/images/covid19_3.jpeg" alt=""></p>
-<p><strong>3. Data Visualisation</strong></p>
-<p>Use <code>matplotlib.pyplot</code> to visualise data into bar chart. The <code>df1</code> object demonstrated the top 10 countries with most confirmed cases while <code>df2</code> displays the death rate.</p>
+<p><strong>3. Visualising Data</strong></p>
+<p>Using <code>matplotlib.pyplot</code> to visualise data into bar chart. The <code>df1</code> object demonstrates the top 10 countries with most confirmed cases whilst <code>df2</code> displays the death rate as reference.</p>
 <pre><code>import matplotlib.pyplot as plt
 
 df.loc[0, 'Country'] = 'United States'
@@ -189,9 +190,11 @@ plt.savefig('Covid19_death_rate_by_top10_country.png')
 
 plt.show()
 </code></pre><p><img src="/images/covid19_5.jpeg" alt=""></p>
-<h4 id="case-2-mapping-for-us-cases-and-deaths">Case 2: Mapping for US cases and deaths*</h4>
-<p><strong>&lsquo;Covid19_US_confirmed.json&rsquo;</strong>, <strong>&lsquo;Covid19_US_Deaths.json&rsquo;</strong> and <strong>&lsquo;Covid19_US_Recovered.json&rsquo;</strong>, 3 json files that recorded US Covid-19 data from January to May 2020 are downloaded from website for mapping a US Covid-19 trend.</p>
-<p>In the beginning, read 3 separated US <strong>confirmed</strong>, <strong>deaths</strong> and <strong>recovered</strong>  json files by pre-created template.</p>
+<h4 id="case-2-mapping-the-death-rate-of-the-worst-affected-country">Case 2: Mapping the death rate of the worst-affected country</h4>
+<p>The result above reveals United States is the worst-affected country, accounting for 838,963 total confirmed cases by the date of April 23.</p>
+<p><strong>1. Importing Data</strong></p>
+<p>We download data by country and status: &lsquo;Covid19_US_confirmed.json&rsquo;, &lsquo;Covid19_US_Deaths.json&rsquo; and &lsquo;Covid19_US_Recovered.json, which recorded data from January to May 2020.</p>
+<p>A pre-created template allows us to convert data into dataframe more efficiently.</p>
 <pre><code>import pandas as pd
 import matplotlib.pyplot as plt
 import bokeh
@@ -206,14 +209,17 @@ for status in statuses:
 </code></pre><p><img src="/images/covid19_6.jpeg" alt="">
 <img src="/images/covid19_7.jpeg" alt="">
 <img src="/images/covid19_8.jpeg" alt=""></p>
-<p>Next, integrate three dataframe into one table by <code>concat</code> method. The following picture showed a table with 312 rows after concatenation.</p>
+<p>Next, integrate three dataframe into one table by <code>concat</code> method. The following picture shows a table with 312 rows after concatenation.</p>
 <pre><code>dfall = pd.concat(dfs.values())
 </code></pre><p><img src="/images/covid19_9.jpeg" alt=""></p>
-<p>Use <code>dt.date</code> method to remove unneeded time data and only keep date information. Afterward, reshape the long table for multiple variables using <code>pivot</code> function ans sett &lsquo;Date&rsquo; and &lsquo;Status&rsquo; as index.</p>
+<p><strong>2. Cleaning Data</strong></p>
+<p>Before moving forward, we use <code>dt.date</code> method to delete unneeded time data.</p>
+<p>Data is often stored in <em>stacked</em> format, listing every single observation.  Our final step before visualisation is to reshape stacked (long) format into unstacked (wide) format by using <a href="https://pandas.pydata.org/docs/user_guide/reshaping.html"><code>pivot</code></a> whilst setting up &lsquo;Date&rsquo; and &lsquo;Status&rsquo; as index.</p>
 <pre><code>dfall['Date'] = dfall['Date'].dt.date
 dfall = dfall.pivot('Date', 'Status', 'Cases') 
 </code></pre><p><img src="/images/covid19_10.jpeg" alt=""></p>
-<p>Finally, plot a trend line and create a run chart.</p>
+<p><strong>3. Visualising Data</strong></p>
+<p>A run chart helps us to study data for pattern over a specific period of time. Using <code>plot</code> to draw a trend line, we‘re seeing a upward trend that confirmed cases in United States is increasing by a large amount.</p>
 <pre><code>dfall.plot()
 plt.xticks(rotation=30) 
 plt.tick_params(labelsize = 3)
@@ -268,12 +274,10 @@ plt.show()
           
           <li class="mb-3"><a class="text-dark" href="https://imogenchen.github.io/work">Work</a></li>
           
-          <li class="mb-3"><a class="text-dark" href="https://imogenchen.github.io/contact">Contact</a></li>
-          
         </ul>
       </div>
       <div class="col-12 border-top py-4 text-center">
-        | copyright &amp; copy; 2021 Imogen All Rights Reserved |
+        | copyright &amp; copy; 2021 <a href="https://imogenchen.github.io">Imogen</a> All Rights Reserved |
       </div>
     </div>
   </div>
